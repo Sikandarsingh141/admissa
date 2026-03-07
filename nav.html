@@ -1,0 +1,78 @@
+  <nav class="bg-[#0A2540] text-white sticky top-0 z-50 shadow-lg">
+        <div class="container mx-auto px-4 py-4">
+            <div class="flex justify-between items-center">
+                <!-- Logo -->
+               <div class="logo-container">
+                   <div class="logo-wrapper">
+                    <svg class="logo-svg" viewBox="0 0 500 120" xmlns="http://www.w3.org/2000/svg">
+                        
+                        <!-- ICON -->
+                        <g transform="translate(10,15)">
+                        <defs>
+                            <linearGradient id="grad" x1="0%" y1="0%" x2="0%" y2="100%">
+                            <stop offset="0%" stop-color="#FFC247"/>
+                            <stop offset="100%" stop-color="#FF6B35"/>
+                            </linearGradient>
+                        </defs>
+
+                        <!-- Bottom shape -->
+                        <path d="M10 50 A40 40 0 0 0 90 50 L75 50 A25 25 0 0 1 25 50 Z" fill="url(#grad)" />
+
+                        <!-- Top circle -->
+                        <circle cx="50" cy="35" r="22" fill="url(#grad)" />
+
+                        <!-- Dots -->
+                        <circle cx="50" cy="5" r="5" fill="#FFC247"/>
+                        <circle cx="25" cy="15" r="5" fill="#FFC247"/>
+                        <circle cx="75" cy="15" r="5" fill="#FFC247"/>
+                        </g>
+
+                        <!-- TEXT -->
+                        <text x="130" y="60" font-family="Poppins, Arial, sans-serif"
+                            font-size="45" font-weight="700" fill="#FF6B35">
+                        ADMISSIA
+                        </text>
+
+                        <text x="130" y="90" font-family="Poppins, Arial, sans-serif"
+                            font-size="32" letter-spacing="3" fill="#888">
+                        DREAM. APPLY. GO
+                        </text>
+
+                    </svg>
+                    </div>
+                </div>
+                
+                <!-- Desktop Navigation -->
+                <div class="hidden md:flex space-x-6">
+                    <a href="#home" class="hover:text-[#FF6B35] transition">Home</a>
+                    <a href="#about" class="hover:text-[#FF6B35] transition">About</a>
+                    <a href="#services" class="hover:text-[#FF6B35] transition">Services</a>
+                    <a href="#destinations" class="hover:text-[#FF6B35] transition">Destinations</a>
+                    <a href="#mbbs" class="hover:text-[#FF6B35] transition">MBBS Abroad</a>
+                    <a href="#study-abroad" class="hover:text-[#FF6B35] transition">Study Abroad</a>
+                    <a href="#blog" class="hover:text-[#FF6B35] transition">Blog</a>
+                    <a href="#contact" class="hover:text-[#FF6B35] transition">Contact</a>
+                </div>
+                <button id="mobile-menu-btn" type="button" aria-controls="mobile-menu" aria-expanded="false" class="md:hidden text-2xl">
+                    ☰
+                </button>
+            </div>
+        </div>
+        
+        <!-- Mobile Menu -->
+        <div id="mobile-menu" class="mobile-menu fixed top-0 left-0 h-full w-64 bg-[#0A2540] md:hidden z-50 shadow-xl">
+                <div class="p-4">
+                <button id="close-menu" type="button" aria-label="Close menu" class="text-3xl mb-6">×</button>
+                <div class="flex flex-col space-y-4">
+                    <a href="#home" class="mobile-link hover:text-[#FF6B35] transition">Home</a>
+                    <a href="#about" class="mobile-link hover:text-[#FF6B35] transition">About</a>
+                    <a href="#services" class="mobile-link hover:text-[#FF6B35] transition">Services</a>
+                    <a href="#destinations" class="mobile-link hover:text-[#FF6B35] transition">Destinations</a>
+                    <a href="#mbbs" class="mobile-link hover:text-[#FF6B35] transition">MBBS Abroad</a>
+                    <a href="#study-abroad" class="mobile-link hover:text-[#FF6B35] transition">Study Abroad</a>
+                    <a href="#blog" class="mobile-link hover:text-[#FF6B35] transition">Blog</a>
+                    <a href="#contact" class="mobile-link hover:text-[#FF6B35] transition">Contact</a>
+                </div>
+            </div>
+        </div>
+    </nav>
