@@ -11,7 +11,7 @@
 </head>
 <link rel="icon" type="image/svg+xml" href="./images/favicon.svg">
 <body class="font-sans text-gray-800">
-    <nav class="bg-[#0A2540] text-white sticky top-0 z-50 shadow-lg">
+    <nav class="site-nav bg-[#062b4f] text-white sticky top-0 z-50 shadow-lg">
         <div class="container mx-auto px-4 py-4">
             <div class="flex justify-between items-center">
                 <!-- Logo -->
@@ -39,10 +39,10 @@
         </div>
         
         <!-- Mobile Menu -->
-        <div id="mobile-menu" class="mobile-menu fixed top-0 left-0 h-full w-64 bg-[#0A2540] md:hidden z-50 shadow-xl">
+        <div id="mobile-menu" class="mobile-menu fixed top-0 left-0 h-screen md:hidden">
             <div class="p-4">
                 <button id="close-menu" type="button" aria-label="Close menu" class="text-3xl mb-6">×</button>
-                <div class="flex flex-col space-y-4">
+                <div class="flex flex-col">
                     <a href="#home" class="mobile-link hover:text-[#FF6B35] transition">Home</a>
                     <a href="#about" class="mobile-link hover:text-[#FF6B35] transition">About</a>
                     <a href="#services" class="mobile-link hover:text-[#FF6B35] transition">Services</a>
@@ -54,6 +54,9 @@
                 </div>
             </div>
         </div>
+
+        <!-- Mobile menu overlay -->
+        <div id="mobile-menu-overlay" class="mobile-menu-overlay fixed inset-0 md:hidden" style="display: none; background: rgba(0, 0, 0, 0.5); z-index: 65; transition: opacity 320ms ease;"></div>
     </nav>
 
     <a href="#main" class="sr-only focus:not-sr-only">Skip to main content</a>
@@ -67,7 +70,7 @@
             <div class="text-center text-white px-4">
                 <h1 class="text-4xl md:text-6xl font-bold mb-4 float-animation">From Small Towns to Global Dreams</h1>
                 <p class="text-xl md:text-2xl mb-8">Your Trust, Our Transparency</p>
-                <div class="flex flex-col md:flex-row gap-4 justify-center">
+                <div class="flex flex-col md:flex-row gap-4 justify-center md:gap-4">
                     <a href="#contact" class="bg-[#FF6B35] hover:bg-[#e55a2b] px-8 py-3 rounded-lg font-semibold transition pulse-animation text-center">Apply Now</a>
                     <a href="https://wa.me/919782984043" target="_blank" class="border-2 border-white hover:bg-white hover:text-[#0A2540] px-8 py-3 rounded-lg font-semibold transition text-center">Book Free Consultation</a>
                 </div>
@@ -580,7 +583,7 @@
                 <div id="testimonial-container" class="bg-gradient-to-br from-[#0A2540] to-[#1a3a5f] rounded-lg shadow-2xl p-8 text-white">
                     <!-- Testimonial 1 -->
                     <div class="testimonial-slide active text-center">
-                        <img src="https://i.pravatar.cc/100?img=1" alt="Student" class="w-24 h-24 rounded-full mx-auto mb-4 border-4 border-[#FF6B35]">
+                        <!-- <img src="https://i.pravatar.cc/100?img=1" alt="Student" class="w-24 h-24 rounded-full mx-auto mb-4 border-4 border-[#FF6B35]"> -->
                         <p class="text-lg mb-4 italic">"Admissia made my dream of studying in Canada a reality. Their guidance was transparent and supportive throughout the entire process. Now I'm pursuing Computer Science at University of Toronto!"</p>
                         <h4 class="font-bold text-xl text-[#FF6B35]">Rajesh Kumar</h4>
                         <p class="text-gray-300 text-sm">Computer Science, University of Toronto, Canada</p>
@@ -591,7 +594,7 @@
                     
                     <!-- Testimonial 2 -->
                     <div class="testimonial-slide text-center">
-                        <img src="https://i.pravatar.cc/100?img=5" alt="Student" class="w-24 h-24 rounded-full mx-auto mb-4 border-4 border-[#FF6B35]">
+                        <!-- <img src="https://i.pravatar.cc/100?img=5" alt="Student" class="w-24 h-24 rounded-full mx-auto mb-4 border-4 border-[#FF6B35]"> -->
                         <p class="text-lg mb-4 italic">"I got admission to an NMC-approved university in Russia with their help. The fees are affordable and the quality is excellent! I'm in my 3rd year now and couldn't be happier."</p>
                         <h4 class="font-bold text-xl text-[#FF6B35]">Priya Sharma</h4>
                         <p class="text-gray-300 text-sm">MBBS Student, Peoples' Friendship University, Moscow</p>
@@ -602,7 +605,7 @@
                     
                     <!-- Testimonial 3 -->
                     <div class="testimonial-slide text-center">
-                        <img src="https://i.pravatar.cc/100?img=8" alt="Student" class="w-24 h-24 rounded-full mx-auto mb-4 border-4 border-[#FF6B35]">
+                        <!-- <img src="https://i.pravatar.cc/100?img=8" alt="Student" class="w-24 h-24 rounded-full mx-auto mb-4 border-4 border-[#FF6B35]"> -->
                         <p class="text-lg mb-4 italic">"Being from a small town in Punjab, I was confused about the process. Admissia guided me step-by-step and now I'm in Australia pursuing my Master's in Business!"</p>
                         <h4 class="font-bold text-xl text-[#FF6B35]">Amit Patel</h4>
                         <p class="text-gray-300 text-sm">MBA, University of Melbourne, Australia</p>
@@ -613,7 +616,7 @@
                     
                     <!-- Testimonial 4 -->
                     <div class="testimonial-slide text-center">
-                        <img src="https://i.pravatar.cc/100?img=9" alt="Student" class="w-24 h-24 rounded-full mx-auto mb-4 border-4 border-[#FF6B35]">
+                        <!-- <img src="https://i.pravatar.cc/100?img=9" alt="Student" class="w-24 h-24 rounded-full mx-auto mb-4 border-4 border-[#FF6B35]"> -->
                         <p class="text-lg mb-4 italic">"The post-landing support was amazing! They helped me settle in and even connected me with other Indian students. I felt at home from day one in the UK."</p>
                         <h4 class="font-bold text-xl text-[#FF6B35]">Sneha Reddy</h4>
                         <p class="text-gray-300 text-sm">Engineering, University of Manchester, UK</p>
@@ -624,7 +627,7 @@
                     
                     <!-- Testimonial 5 -->
                     <div class="testimonial-slide text-center">
-                        <img src="https://i.pravatar.cc/100?img=12" alt="Student" class="w-24 h-24 rounded-full mx-auto mb-4 border-4 border-[#FF6B35]">
+                        <!-- <img src="https://i.pravatar.cc/100?img=12" alt="Student" class="w-24 h-24 rounded-full mx-auto mb-4 border-4 border-[#FF6B35]"> -->
                         <p class="text-lg mb-4 italic">"Affordable MBBS in Kyrgyzstan with complete transparency. No hidden charges, just honest guidance. I'm grateful to Admissia for making my dream come true!"</p>
                         <h4 class="font-bold text-xl text-[#FF6B35]">Vikram Singh</h4>
                         <p class="text-gray-300 text-sm">MBBS, Asian Medical Institute, Kyrgyzstan</p>

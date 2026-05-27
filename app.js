@@ -2,15 +2,28 @@ const mobileMenuBtn = document.getElementById('mobile-menu-btn');
         const mobileMenu = document.getElementById('mobile-menu');
         const closeMenuBtn = document.getElementById('close-menu');
         const mobileLinks = document.querySelectorAll('.mobile-link');
+        const mobileOverlay = document.getElementById('mobile-menu-overlay');
 
         if (mobileMenuBtn && mobileMenu) {
             const openMenu = () => {
                 mobileMenu.classList.add('active');
+                if (mobileOverlay) {
+                    mobileOverlay.classList.add('active');
+                    mobileOverlay.style.display = 'block';
+                }
                 mobileMenuBtn.setAttribute('aria-expanded', 'true');
+                document.body.style.overflow = 'hidden';
             };
             const closeMenu = () => {
                 mobileMenu.classList.remove('active');
+                if (mobileOverlay) {
+                    mobileOverlay.classList.remove('active');
+                    setTimeout(() => {
+                        mobileOverlay.style.display = 'none';
+                    }, 320);
+                }
                 mobileMenuBtn.setAttribute('aria-expanded', 'false');
+                document.body.style.overflow = 'auto';
             };
 
             mobileMenuBtn.addEventListener('click', () => {
@@ -24,6 +37,11 @@ const mobileMenuBtn = document.getElementById('mobile-menu-btn');
             document.addEventListener('keydown', (e) => {
                 if (e.key === 'Escape') closeMenu();
             });
+
+            // Close menu when clicking overlay
+            if (mobileOverlay) {
+                mobileOverlay.addEventListener('click', closeMenu);
+            }
         }
         const stats = document.querySelectorAll('.stat-number');
         let statsAnimated = false;
@@ -99,6 +117,42 @@ const mobileMenuBtn = document.getElementById('mobile-menu-btn');
         const nextBtn = document.getElementById('next-testimonial');
         const prevBtn = document.getElementById('prev-testimonial');
         const testimonialContainer = document.getElementById('testimonial-container');
+
+        // Scroll detection for navbar hide/show on mobile
+        (function () {
+            const siteNav = document.querySelector('nav.site-nav');
+            if (!siteNav) return;
+            
+            let lastY = window.pageYOffset || document.documentElement.scrollTop;
+            let ticking = false;
+            
+            function handleScroll() {
+                const currentY = window.pageYOffset || document.documentElement.scrollTop;
+                const delta = lastY - currentY; // positive when scrolling up
+                
+                // Ignore small movements to prevent flickering
+                if (Math.abs(delta) < 8) return;
+                
+                if (delta > 0 && currentY > 50) {
+                    // User scrolled up
+                    siteNav.classList.add('nav-visible');
+                } else if (delta < 0) {
+                    // User scrolled down
+                    siteNav.classList.remove('nav-visible');
+                }
+                lastY = Math.max(0, currentY);
+            }
+            
+            window.addEventListener('scroll', function () {
+                if (!ticking) {
+                    window.requestAnimationFrame(function () {
+                        handleScroll();
+                        ticking = false;
+                    });
+                    ticking = true;
+                }
+            }, { passive: true });
+        })();
 
         if (nextBtn) nextBtn.addEventListener('click', () => { stopAutoSlide(); nextSlide(); startAutoSlide(); });
         if (prevBtn) prevBtn.addEventListener('click', () => { stopAutoSlide(); prevSlide(); startAutoSlide(); });
