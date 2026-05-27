@@ -123,24 +123,26 @@ const mobileMenuBtn = document.getElementById('mobile-menu-btn');
             const siteNav = document.querySelector('nav.site-nav');
             if (!siteNav) return;
             
+            // Initially show the navbar
+            siteNav.classList.add('nav-visible');
+            
             let lastY = window.pageYOffset || document.documentElement.scrollTop;
             let ticking = false;
             
             function handleScroll() {
                 const currentY = window.pageYOffset || document.documentElement.scrollTop;
-                const delta = lastY - currentY; // positive when scrolling up
                 
                 // Ignore small movements to prevent flickering
-                if (Math.abs(delta) < 8) return;
+                if (Math.abs(currentY - lastY) < 8) return;
                 
-                if (delta > 0 && currentY > 50) {
-                    // User scrolled up
-                    siteNav.classList.add('nav-visible');
-                } else if (delta < 0) {
+                if (currentY > lastY) {
                     // User scrolled down
                     siteNav.classList.remove('nav-visible');
+                } else if (currentY < lastY) {
+                    // User scrolled up
+                    siteNav.classList.add('nav-visible');
                 }
-                lastY = Math.max(0, currentY);
+                lastY = currentY;
             }
             
             window.addEventListener('scroll', function () {
