@@ -1,5 +1,6 @@
   /* Custom styles for smooth scrolling and animations */
-        html { scroll-behavior: smooth; }
+        
+  html { scroll-behavior: smooth; }
         .hero-overlay { background: linear-gradient(rgba(10, 37, 64, 0.5), rgba(10, 37, 64, 0.4)); }
         .testimonial-slide { display: none; }
         .testimonial-slide.active { display: block; }
@@ -222,7 +223,7 @@
     }
 
     nav.site-nav .logo {
-        max-width: 150px;
+        max-width: 160px;
     }
 
     /* Hamburger button styling */
