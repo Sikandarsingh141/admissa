@@ -1,0 +1,396 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>AdmiSeeQ - Premium Logo Design</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            min-height: 100vh;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            background: linear-gradient(135deg, #0a0e27 0%, #1a1a2e 50%, #16213e 100%);
+            font-family: 'Space Grotesk', -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
+            padding: 40px 20px;
+        }
+
+        .logo-container {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            gap: 60px;
+        }
+
+        .logo-showcase {
+            background: linear-gradient(145deg, #0f1629 0%, #1a2340 50%, #0d0f1f 100%);
+            padding: 80px 100px;
+            border-radius: 24px;
+            box-shadow: 
+                0 20px 60px rgba(0, 0, 0, 0.5),
+                inset 0 1px 0 rgba(255, 255, 255, 0.1);
+            border: 1px solid rgba(255, 255, 255, 0.05);
+            backdrop-filter: blur(10px);
+            position: relative;
+            overflow: hidden;
+        }
+
+        .logo-showcase::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background: radial-gradient(circle at 30% 30%, rgba(255, 107, 53, 0.05) 0%, transparent 50%);
+            pointer-events: none;
+        }
+
+        svg {
+            display: block;
+            filter: drop-shadow(0 20px 40px rgba(255, 107, 53, 0.1));
+            transition: transform 0.4s cubic-bezier(0.34, 1.56, 0.64, 1);
+        }
+
+        .logo-showcase:hover svg {
+            transform: scale(1.05);
+        }
+
+        .design-specs {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+            gap: 30px;
+            max-width: 1000px;
+        }
+
+        .spec-card {
+            background: rgba(255, 255, 255, 0.03);
+            backdrop-filter: blur(10px);
+            border: 1px solid rgba(255, 255, 255, 0.1);
+            padding: 28px;
+            border-radius: 16px;
+            transition: all 0.3s ease;
+        }
+
+        .spec-card:hover {
+            background: rgba(255, 255, 255, 0.06);
+            border-color: rgba(255, 107, 53, 0.3);
+            transform: translateY(-4px);
+        }
+
+        .spec-title {
+            font-size: 13px;
+            font-weight: 700;
+            letter-spacing: 2px;
+            text-transform: uppercase;
+            color: #FF6B35;
+            margin-bottom: 12px;
+        }
+
+        .spec-content {
+            font-size: 14px;
+            line-height: 1.6;
+            color: #B0B0C0;
+        }
+
+        .color-palette {
+            display: flex;
+            gap: 12px;
+            margin-top: 16px;
+            flex-wrap: wrap;
+        }
+
+        .color-swatch {
+            width: 40px;
+            height: 40px;
+            border-radius: 8px;
+            border: 1px solid rgba(255, 255, 255, 0.2);
+            transition: transform 0.2s ease;
+            cursor: pointer;
+        }
+
+        .color-swatch:hover {
+            transform: scale(1.1);
+        }
+
+        .gradient-bg {
+            background: linear-gradient(135deg, #FF6B35 0%, #FF8C5A 100%);
+        }
+
+        .white-bg {
+            background: #FFFFFF;
+        }
+
+        .navy-bg {
+            background: #0a0e27;
+            box-shadow: inset 0 0 0 1px rgba(255, 255, 255, 0.2);
+        }
+
+        .dark-bg {
+            background: #1a1a2e;
+            box-shadow: inset 0 0 0 1px rgba(255, 255, 255, 0.1);
+        }
+
+        .gray-bg {
+            background: #6B7280;
+        }
+
+        .export-section {
+            text-align: center;
+            padding-top: 40px;
+            border-top: 1px solid rgba(255, 255, 255, 0.1);
+        }
+
+        .export-title {
+            font-size: 13px;
+            font-weight: 700;
+            letter-spacing: 2px;
+            text-transform: uppercase;
+            color: #FF6B35;
+            margin-bottom: 20px;
+        }
+
+        .export-buttons {
+            display: flex;
+            gap: 16px;
+            justify-content: center;
+            flex-wrap: wrap;
+        }
+
+        .export-btn {
+            background: rgba(255, 107, 53, 0.15);
+            border: 1px solid rgba(255, 107, 53, 0.3);
+            color: #FF6B35;
+            padding: 12px 24px;
+            border-radius: 8px;
+            font-size: 12px;
+            font-weight: 600;
+            letter-spacing: 1px;
+            text-transform: uppercase;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            font-family: inherit;
+        }
+
+        .export-btn:hover {
+            background: rgba(255, 107, 53, 0.25);
+            border-color: rgba(255, 107, 53, 0.5);
+            transform: translateY(-2px);
+        }
+
+        @media (max-width: 768px) {
+            .logo-showcase {
+                padding: 60px 40px;
+            }
+
+            .design-specs {
+                grid-template-columns: 1fr;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="logo-container">
+        <!-- Main Logo Showcase -->
+        <div class="logo-showcase">
+            <svg width="500" height="200" viewBox="0 0 500 200" xmlns="http://www.w3.org/2000/svg">
+                <defs>
+                    <!-- Premium Glossy Effect -->
+                    <linearGradient id="glossy-overlay" x1="0%" y1="0%" x2="0%" y2="100%">
+                        <stop offset="0%" style="stop-color:#FFFFFF;stop-opacity:0.15" />
+                        <stop offset="50%" style="stop-color:#FFFFFF;stop-opacity:0.02" />
+                        <stop offset="100%" style="stop-color:#FFFFFF;stop-opacity:0" />
+                    </linearGradient>
+
+                    <!-- Text Shadows for Depth -->
+                    <filter id="text-shadow" x="-50%" y="-50%" width="200%" height="200%">
+                        <feDropShadow dx="0" dy="2" stdDeviation="3" flood-opacity="0.3"/>
+                        <feDropShadow dx="0" dy="8" stdDeviation="6" flood-opacity="0.15"/>
+                    </filter>
+
+                    <!-- Geometric Accent Pattern -->
+                    <pattern id="tech-pattern" x="0" y="0" width="20" height="20" patternUnits="userSpaceOnUse">
+                        <circle cx="10" cy="10" r="1.5" fill="#FF6B35" opacity="0.3"/>
+                    </pattern>
+
+                    <!-- Orange Gradient for SeeQ -->
+                    <linearGradient id="orange-gradient" x1="0%" y1="0%" x2="100%" y2="100%">
+                        <stop offset="0%" style="stop-color:#FF6B35;stop-opacity:1" />
+                        <stop offset="100%" style="stop-color:#FF8C5A;stop-opacity:1" />
+                    </linearGradient>
+
+                    <!-- Ambient Glow -->
+                    <filter id="glow" x="-50%" y="-50%" width="200%" height="200%">
+                        <feGaussianBlur in="SourceGraphic" stdDeviation="2" />
+                    </filter>
+                </defs>
+
+                <!-- Geometric Background Elements (Minimalist Design) -->
+                <g opacity="0.1">
+                    <line x1="50" y1="80" x2="120" y2="80" stroke="#FF6B35" stroke-width="2"/>
+                    <line x1="380" y1="120" x2="450" y2="120" stroke="#FF6B35" stroke-width="2"/>
+                    <rect x="55" y="140" width="40" height="40" fill="none" stroke="#FF6B35" stroke-width="1.5" opacity="0.5"/>
+                    <circle cx="430" cy="45" r="20" fill="none" stroke="#FF6B35" stroke-width="1.5" opacity="0.5"/>
+                </g>
+
+                <!-- "Admi" Text in Bold White -->
+                <text x="80" y="100" font-family="'Space Grotesk', -apple-system, sans-serif" font-size="72" font-weight="800" letter-spacing="-2" fill="#FFFFFF" filter="url(#text-shadow)">
+                    Admi
+                </text>
+
+                <!-- "SeeQ" Text in Vibrant Orange -->
+                <text x="320" y="100" font-family="'Space Grotesk', -apple-system, sans-serif" font-size="72" font-weight="800" letter-spacing="-2" fill="url(#orange-gradient)" filter="url(#text-shadow)">
+                    SeeQ
+                </text>
+
+                <!-- Glossy Overlay on Logo -->
+                <rect x="40" y="40" width="420" height="90" fill="url(#glossy-overlay)" rx="8"/>
+
+                <!-- Tagline: DREEM • APPLY • GO -->
+                <text x="250" y="160" font-family="'Space Mono', monospace" font-size="12" font-weight="600" letter-spacing="2" fill="#6B7280" text-anchor="middle">
+                    DREEM • APPLY • GO
+                </text>
+
+                <!-- Subtle Accent Lines (Premium Border) -->
+                <line x1="60" y1="175" x2="440" y2="175" stroke="#FF6B35" stroke-width="1" opacity="0.4"/>
+            </svg>
+        </div>
+
+        <!-- Design Specifications -->
+        <div class="design-specs">
+            <div class="spec-card">
+                <div class="spec-title">Typography</div>
+                <div class="spec-content">
+                    Clean geometric sans-serif (Space Grotesk)<br/>
+                    Bold 800 weight<br/>
+                    Tight letter spacing for premium feel<br/>
+                    Sharp, modern letterforms
+                </div>
+            </div>
+
+            <div class="spec-card">
+                <div class="spec-title">Color Palette</div>
+                <div class="spec-content">
+                    Professional tech startup branding
+                    <div class="color-palette">
+                        <div class="color-swatch white-bg"></div>
+                        <div class="color-swatch gradient-bg"></div>
+                        <div class="color-swatch navy-bg"></div>
+                        <div class="color-swatch dark-bg"></div>
+                        <div class="color-swatch gray-bg"></div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="spec-card">
+                <div class="spec-title">Visual Effects</div>
+                <div class="spec-content">
+                    Subtle glossy overlay for depth<br/>
+                    Drop shadow for elevation<br/>
+                    Minimalist geometric accents<br/>
+                    High contrast design
+                </div>
+            </div>
+
+            <div class="spec-card">
+                <div class="spec-title">Brand Style</div>
+                <div class="spec-content">
+                    Modern recruitment platform<br/>
+                    AI-powered aesthetic<br/>
+                    Corporate SaaS branding<br/>
+                    Professional, trustworthy presence
+                </div>
+            </div>
+
+            <div class="spec-card">
+                <div class="spec-title">Design Elements</div>
+                <div class="spec-content">
+                    Vector-based logo<br/>
+                    Geometric accent patterns<br/>
+                    Professional spacing<br/>
+                    Clean, minimal approach
+                </div>
+            </div>
+
+            <div class="spec-card">
+                <div class="spec-title">Tagline</div>
+                <div class="spec-content">
+                    "DREEM • APPLY • GO"<br/>
+                    Small monospace caps<br/>
+                    Wide letter spacing<br/>
+                    Muted gray color for balance
+                </div>
+            </div>
+        </div>
+
+        <!-- Export Section -->
+        <div class="export-section">
+            <div class="export-title">Export Formats</div>
+            <div class="export-buttons">
+                <button class="export-btn" onclick="downloadSVG()">Download SVG</button>
+                <button class="export-btn" onclick="downloadPNG()">Download PNG</button>
+                <button class="export-btn" onclick="copyCode()">Copy Code</button>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        function downloadSVG() {
+            const svg = document.querySelector('svg');
+            const svgData = new XMLSerializer().serializeToString(svg);
+            const canvas = document.createElement('canvas');
+            const ctx = canvas.getContext('2d');
+            
+            const blob = new Blob([svgData], { type: 'image/svg+xml' });
+            const url = URL.createObjectURL(blob);
+            const link = document.createElement('a');
+            link.href = url;
+            link.download = 'admiseeq-logo.svg';
+            link.click();
+            URL.revokeObjectURL(url);
+        }
+
+        function downloadPNG() {
+            const svg = document.querySelector('svg');
+            const svgData = new XMLSerializer().serializeToString(svg);
+            const canvas = document.createElement('canvas');
+            const ctx = canvas.getContext('2d');
+            const img = new Image();
+            
+            canvas.width = 500;
+            canvas.height = 200;
+            
+            img.onload = function() {
+                ctx.fillStyle = 'rgba(10, 14, 39, 1)';
+                ctx.fillRect(0, 0, canvas.width, canvas.height);
+                ctx.drawImage(img, 0, 0);
+                
+                canvas.toBlob(function(blob) {
+                    const url = URL.createObjectURL(blob);
+                    const link = document.createElement('a');
+                    link.href = url;
+                    link.download = 'admiseeq-logo.png';
+                    link.click();
+                    URL.revokeObjectURL(url);
+                });
+            };
+            
+            img.src = 'data:image/svg+xml;base64,' + btoa(svgData);
+        }
+
+        function copyCode() {
+            const svg = document.querySelector('svg');
+            const svgData = new XMLSerializer().serializeToString(svg);
+            navigator.clipboard.writeText(svgData).then(() => {
+                alert('SVG code copied to clipboard!');
+            });
+        }
+    </script>
+</body>
+</html>
