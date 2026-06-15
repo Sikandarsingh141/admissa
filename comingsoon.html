@@ -11,7 +11,7 @@
 *,*::before,*::after{margin:0;padding:0;box-sizing:border-box;}
 
 :root{
-  --bg:#999dac;
+  --bg:#070A14;
   --bg2:#0A0F1F;
   --surface:rgba(255,255,255,0.025);
   --line:rgba(255,255,255,0.08);
@@ -33,6 +33,50 @@ body{
 
 /* ===== Desktop / laptop: no-scroll single screen ===== */
 .page{ position:relative; width:100%; height:100vh; overflow:hidden; display:flex; flex-direction:column; }
+
+/* ===== CURTAIN REVEAL ===== */
+.curtain{
+  position:fixed; top:0; height:100vh; width:50%; z-index:999;
+  background:
+    linear-gradient(135deg, rgba(255,90,18,0.10) 0%, transparent 55%),
+    linear-gradient(165deg, #0A0F1F 0%, #070A14 55%, #050811 100%);
+  display:flex; align-items:center; justify-content:center;
+  transition: transform 1.1s cubic-bezier(0.76,0,0.24,1);
+  pointer-events:none;
+}
+.curtain::before{
+  content:''; position:absolute; top:0; bottom:0; width:1px;
+  background:linear-gradient(180deg, transparent, var(--orange) 50%, transparent);
+  box-shadow:0 0 24px 2px rgba(255,90,18,0.55);
+}
+.curtain-left{ left:0; transform:translateX(0); }
+.curtain-left::before{ right:0; }
+.curtain-right{ right:0; transform:translateX(0); }
+.curtain-right::before{ left:0; }
+
+.curtain-mark{
+  display:flex; align-items:center; gap:10px;
+  font-family:'Space Mono',monospace; font-size:11px; letter-spacing:5px; text-transform:uppercase;
+  color:var(--orange); opacity:0.85;
+  transition: opacity .5s ease;
+}
+.curtain-left .curtain-mark{ transform:translateX(28px); }
+.curtain-right .curtain-mark{ transform:translateX(-28px); }
+.curtain-mark .dot{
+  width:6px; height:6px; border-radius:50%; background:var(--orange);
+  box-shadow:0 0 10px rgba(255,90,18,0.8);
+  animation: mark-pulse 1.4s ease-in-out infinite;
+}
+@keyframes mark-pulse{ 0%,100%{ opacity:0.4; transform:scale(0.8); } 50%{ opacity:1; transform:scale(1.2); } }
+
+.curtains-open .curtain-left{ transform:translateX(-100%); }
+.curtains-open .curtain-right{ transform:translateX(100%); }
+.curtains-open .curtain-mark{ opacity:0; }
+.curtains-open .curtain{ pointer-events:none; }
+
+@media (prefers-reduced-motion:reduce){
+  .curtain{ display:none; }
+}
 
 /* ===== BACKGROUND ===== */
 .bg{
@@ -348,6 +392,13 @@ TABLETS & BELOW — restore natural scrolling
 </style>
 </head>
 <body>
+<div class="curtain curtain-left" id="curtainLeft">
+  <div class="curtain-mark"><span class="dot"></span> AdmiSeeQ</div>
+</div>
+<div class="curtain curtain-right" id="curtainRight">
+  <div class="curtain-mark">AdmiSeeQ <span class="dot"></span></div>
+</div>
+
 <div class="page" id="page">
   <div class="bg"></div>
   <div class="vignette"></div>
@@ -403,7 +454,7 @@ TABLETS & BELOW — restore natural scrolling
       </h1>
 
       <p class="desc reveal" id="r4">
-        The admissions game has had <br> <strong>too many players. <br></strong> <em>Not enough clarity. <br></em> That changes now.
+        The admissions game has had <strong>too many players.</strong> <em>Not enough clarity.</em> That changes now.
       </p>
 
       <div class="features reveal" id="r5">
@@ -438,11 +489,11 @@ TABLETS & BELOW — restore natural scrolling
         <form id="seatForm" onsubmit="return handleReserve(event)">
           <div class="field" id="fName">
             <svg viewBox="0 0 24 24" fill="none" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="8" r="4"/><path d="M4 21c0-4 4-6 8-6s8 2 8 6"/></svg>
-            <input type="text" name="name" placeholder="Full Name" id="name" required>
+            <input type="text" placeholder="Full Name" id="name" required>
           </div>
           <div class="field" id="fEmail">
             <svg viewBox="0 0 24 24" fill="none" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><rect x="2" y="4" width="20" height="16" rx="2"/><path d="m2 6 10 7 10-7"/></svg>
-            <input type="email" name="email" placeholder="Email Address" id="email" required>
+            <input type="email" placeholder="Email Address" id="email" required>
           </div>
           <div class="field" id="fPhone">
             <svg viewBox="0 0 24 24" fill="none" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><path d="M5 4h4l2 5-2.5 1.5a11 11 0 0 0 5 5L15 13l5 2v4a2 2 0 0 1-2 2C9 21 3 15 3 6a2 2 0 0 1 2-2Z"/></svg>
@@ -486,9 +537,13 @@ TABLETS & BELOW — restore natural scrolling
 <script src="https://cdn.jsdelivr.net/npm/@emailjs/browser@3/dist/email.min.js"></script>
 <script>
 (function(){
-  if (window.emailjs && typeof emailjs.init === 'function') {
-    try { emailjs.init('mPMEFo4rm6yoWkcRG'); } catch (err) { console.warn('EmailJS init failed', err); }
-  }
+  // curtain reveal
+  window.addEventListener('load', function(){
+    setTimeout(function(){
+      document.body.classList.add('curtains-open');
+    }, 400);
+  });
+
   // dot-grid corner
   var grid = document.getElementById('dotGrid');
   var lit = [3, 14, 27]; // indices to highlight orange
@@ -542,24 +597,35 @@ function handleReserve(e){
     user_email: email,
     user_phone: phone,
     service: 'Reserve Your Seat',
-    message: 'Early access reservation request from Reserve Your Seat form.'
+    message: 'Reserve Your Seat request from ' + name + ' (' + email + ')' + (phone ? ' / ' + phone : '')
   };
 
-  if (window.emailjs && typeof emailjs.send === 'function') {
+  if (window.emailjs && typeof window.emailjs.send === 'function') {
+    try {
+      emailjs.init('mPMEFo4rm6yoWkcRG');
+    } catch (err) {
+      console.warn('EmailJS init duplicate or unavailable', err);
+    }
+
     emailjs.send('service_9kldo6k', 'template_we50p04', payload)
-      .then(function(response){
-        console.log('Reserve Your Seat submission sent', response);
+      .then(function () {
+        document.getElementById('seatForm').style.display = 'none';
+        document.getElementById('cardFooter').style.display = 'none';
+        document.getElementById('success').style.display = 'block';
       })
-      .catch(function(error){
-        console.error('EmailJS error', error);
+      .catch(function (error) {
+        console.error('EmailJS send error:', error);
+        document.getElementById('success').textContent = 'Unable to send reservation right now. Please try again later.';
+        document.getElementById('success').style.display = 'block';
       });
   } else {
-    console.warn('EmailJS unavailable — reserve form payload logged.', payload);
+    console.warn('EmailJS not available — logging reserve payload instead');
+    console.log('Reserve payload:', payload);
+    document.getElementById('seatForm').style.display = 'none';
+    document.getElementById('cardFooter').style.display = 'none';
+    document.getElementById('success').style.display = 'block';
   }
 
-  document.getElementById('seatForm').style.display = 'none';
-  document.getElementById('cardFooter').style.display = 'none';
-  document.getElementById('success').style.display = 'block';
   return false;
 }
 function toggleInvalid(id, invalid){

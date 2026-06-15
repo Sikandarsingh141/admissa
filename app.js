@@ -506,6 +506,42 @@ const mobileMenuBtn = document.getElementById('mobile-menu-btn');
             });
         }
 
+        const reserveForm = document.getElementById('reserve-form');
+        if (reserveForm) {
+            reserveForm.addEventListener('submit', function (e) {
+                e.preventDefault();
+
+                const payload = {
+                    user_name: document.getElementById('reserve-name') ? document.getElementById('reserve-name').value : '',
+                    user_email: document.getElementById('reserve-email') ? document.getElementById('reserve-email').value : '',
+                    user_phone: document.getElementById('reserve-phone') ? document.getElementById('reserve-phone').value : '',
+                    service: 'Reserve Your Seat',
+                    message: document.getElementById('reserve-message') ? document.getElementById('reserve-message').value : 'Reserve Your Seat submission'
+                };
+
+                if (window.emailjs && typeof emailjs.send === 'function') {
+                    emailjs.send('service_9kldo6k', 'template_we50p04', payload)
+                        .then(function (response) {
+                            if (window.admissiaNotify) window.admissiaNotify('Reservation sent successfully ✅', 'success', 4500);
+                            reserveForm.reset();
+                            var reserveSuccess = document.getElementById('reserve-success');
+                            if (reserveSuccess) reserveSuccess.classList.remove('hidden');
+                        })
+                        .catch(function (error) {
+                            console.error('EmailJS send error:', error);
+                            if (window.admissiaNotify) window.admissiaNotify('Error sending reservation ❌', 'error', 4500);
+                        });
+                } else {
+                    console.warn('EmailJS not available — logging reserve payload instead');
+                    console.log('Reserve form payload:', payload);
+                    if (window.admissiaNotify) window.admissiaNotify('Reservation captured (dev mode).', 'info', 3500);
+                    reserveForm.reset();
+                    var reserveSuccess = document.getElementById('reserve-success');
+                    if (reserveSuccess) reserveSuccess.classList.remove('hidden');
+                }
+            });
+        }
+
         // Injected: lightweight toast/notify system (no external deps)
         (function () {
             function injectNotifyStyles() {
