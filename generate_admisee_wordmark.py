@@ -5,7 +5,7 @@ import os
 WIDTH, HEIGHT = 3840, 2160
 OUT_DIR = os.path.join(os.path.dirname(__file__), 'images')
 os.makedirs(OUT_DIR, exist_ok=True)
-OUT_PATH = os.path.join(OUT_DIR, 'AdmiSeeQ-wordmark-4k.png')
+OUT_PATH = os.path.join(OUT_DIR, 'AdmiSeeQ-wordmark-4k1.png')
 
 # Colors
 ORANGE_START = (255, 106, 26)   # #FF6A1A
@@ -14,6 +14,9 @@ MIDDLE_COLOR = (255, 255, 255)  # white for middle letters
 
 # Use exact requested casing: capital S in the middle
 TEXT = 'AdmiSeeQ'
+BOTTOM_TEXT = 'SeeQ the World'
+BOTTOM_TEXT_WIDTH_RATIO = 0.42
+BOTTOM_TEXT_SCALE = 0.28
 
 # Font search list (Windows common names) - fallbacks will be used
 FONT_CANDIDATES = [
@@ -112,6 +115,25 @@ for i, ch in enumerate(letters):
     else:
         draw.text((x, baseline_y), ch, font=font, fill=MIDDLE_COLOR)
     x += lw + kerning
+
+# Draw bottom caption text
+bottom_font_size = int(font.size * BOTTOM_TEXT_SCALE)
+bottom_font = ImageFont.truetype(font_path, bottom_font_size) if font_path else ImageFont.load_default()
+bottom_bbox = draw.textbbox((0, 0), BOTTOM_TEXT, font=bottom_font)
+bottom_width = bottom_bbox[2] - bottom_bbox[0]
+bottom_height = bottom_bbox[3] - bottom_bbox[1]
+
+bottom_x = (WIDTH - bottom_width) // 2
+bottom_y = baseline_y + max(letter_heights) + int(HEIGHT * 0.10)
+
+# draw bottom caption with orange Q only
+for i, ch in enumerate(BOTTOM_TEXT):
+    ch_width = draw.textbbox((0, 0), ch, font=bottom_font)[2]
+    if ch == 'Q':
+        draw.text((bottom_x, bottom_y), ch, font=bottom_font, fill=ORANGE_START)
+    else:
+        draw.text((bottom_x, bottom_y), ch, font=bottom_font, fill=MIDDLE_COLOR)
+    bottom_x += ch_width
 
 # Save PNG
 img.save(OUT_PATH)
